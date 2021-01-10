@@ -5,6 +5,7 @@ phases:
     commands:
       - echo Logging in to Docker Hub...
       - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PW
+      - TAG_VERSION="v1.0.1"
   build:
     commands:
       - echo Build started on `date`
