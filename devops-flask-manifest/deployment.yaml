@@ -21,7 +21,7 @@ spec:
         app: devops-flask
     spec:
       containers:
-      - image: hodong42/devops
+      - image: hodong42/devops:
         imagePullPolicy: Always
         name: devops-flask
         ports:
