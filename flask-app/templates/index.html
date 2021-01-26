@@ -3,8 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>DevOps Tutorial</title>
+    <script>
+        window.onload = function() {
+        var secs = 601;
+        var id = setInterval(function(){ 
+            secs--; //console.log(secs);
+            document.getElementById("timer").innerHTML = secs;
+        if(secs == 0){
+            clearInterval(id);
+            alert('Total Time: ' + secs + ' seconds');
+        }
+        }, 1000);
+    };
+    </script>
 </head>
 <body>
-   <h1>Welcome to DevOps</h1>
+   <h1>600seconds</h1>
+   <h2 id="timer"></h2>
+   <input type="text" id="name" name="name">
+   <button id="confirm">확인</button>
+   <table id="todoList">
+   
+   </table>
+
+
+    <script>
+        document.getElementById("confirm").onclick = function(){
+            var td = document.getElementById("todoList");
+            var newtr = document.createElement("tr");
+            var newlabel = document.createElement("label");
+            newlabel.innerHTML = document.getElementById("name").value;
+            document.getElementById("name").value = '';
+            var clrbtn = document.createElement("button");
+            clrbtn.innerHTML = "clear";
+            clrbtn.onclick = function(){
+                this.previousElementSibling.style = "text-decoration:line-through";
+            }
+            var delbtn = document.createElement("button");
+            delbtn.innerHTML = "delete";
+            delbtn.onclick = function(){
+                this.parentNode.remove();
+            }
+            td.appendChild(newtr);
+            newtr.appendChild(newlabel);
+            newtr.appendChild(clrbtn);
+            newtr.appendChild(delbtn);
+        }
+    </script>
+
 </body>
 </html>
