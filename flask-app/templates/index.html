@@ -5,7 +5,7 @@
     <title>DevOps Tutorial</title>
     <script>
         window.onload = function() {
-        var secs = 601;
+        var secs = 600;
         var id = setInterval(function(){ 
             secs--; //console.log(secs);
             document.getElementById("timer").innerHTML = secs;
@@ -19,36 +19,49 @@
 </head>
 <body>
    <h1>600seconds</h1>
-   <h2 id="timer"></h2>
+   <h2 id="timer">600</h2>
    <input type="text" id="name" name="name">
    <button id="confirm">확인</button>
-   <table id="todoList">
-   
-   </table>
-
-
+    <div id="todoList">
+        {% for x in todoList %}
+        <div>
+            <label>{{x[2]}}</label><button clr={{x[0]}}>clear</button><button del={{x[0]}}>delete</button>
+        </div>
+        {% endfor %}
+    </div>
     <script>
+        var clrhandler = function() {
+            this.previousElementSibling.style = "text-decoration:line-through";
+        }
+        var delhandler = function() {
+            this.parentNode.remove();
+        }
+
         document.getElementById("confirm").onclick = function(){
             var td = document.getElementById("todoList");
-            var newtr = document.createElement("tr");
+            var newtr = document.createElement("div");
             var newlabel = document.createElement("label");
             newlabel.innerHTML = document.getElementById("name").value;
             document.getElementById("name").value = '';
             var clrbtn = document.createElement("button");
             clrbtn.innerHTML = "clear";
-            clrbtn.onclick = function(){
-                this.previousElementSibling.style = "text-decoration:line-through";
-            }
+            clrbtn.onclick = clrhandler;
             var delbtn = document.createElement("button");
             delbtn.innerHTML = "delete";
-            delbtn.onclick = function(){
-                this.parentNode.remove();
-            }
+            delbtn.onclick = delhandler;
             td.appendChild(newtr);
             newtr.appendChild(newlabel);
             newtr.appendChild(clrbtn);
             newtr.appendChild(delbtn);
         }
+
+        var btns = document.querySelectorAll('button[clr]'),
+            l = btns.length;
+        while(l--)btns[l].addEventListener("click", clrhandler, false);
+        var btns = document.querySelectorAll('button[del]'),
+            l = btns.length;
+        while(l--)btns[l].addEventListener("click", delhandler, false);
+
     </script>
 
 </body>
