@@ -20,8 +20,11 @@
 <body>
    <h1>600seconds</h1>
    <h2 id="timer">600</h2>
-   <input type="text" id="name" name="name">
-   <button id="confirm">확인</button>
+   <form action="/" method="post">
+        <input type="text" id="name" name="todo">
+        <button type="button" id="confirm">확인</button>
+    </form>
+    
     <div id="todoList">
         {% for x in todoList %}
         <div>
@@ -42,7 +45,6 @@
             var newtr = document.createElement("div");
             var newlabel = document.createElement("label");
             newlabel.innerHTML = document.getElementById("name").value;
-            document.getElementById("name").value = '';
             var clrbtn = document.createElement("button");
             clrbtn.innerHTML = "clear";
             clrbtn.onclick = clrhandler;
@@ -53,6 +55,16 @@
             newtr.appendChild(newlabel);
             newtr.appendChild(clrbtn);
             newtr.appendChild(delbtn);
+
+            //post
+            let data = {element: document.getElementById("name").value};
+            fetch("/", {
+                method: "POST", 
+                body: JSON.stringify(data)
+            }).then(res => {
+                console.log("Request complete! response:", res);
+                document.getElementById("name").value = '';
+            });
         }
 
         var btns = document.querySelectorAll('button[clr]'),
