@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+    div {
+        width: 100%;
+        height: 100px;
+        display: table;
+    }
+    div.all {
+        border: 1px solid;
+    }
+    div.left {
+        width: 50%;
+        float: left;
+        box-sizing: border-box;
+        background: #ff0;
+        cursor: pointer;
+    }
+    div.right {
+        width: 50%;
+        float: right;
+        box-sizing: border-box;
+        background: #0ff;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+<div>
+     {% if step == 0 %}
+        <div onclick="location.href='/kk'" style="cursor: pointer;" class="all">
+        시작하기
+        </div>
+    {% elif step == 1 %}
+        <div>
+        주말에는
+        </div>
+        <div onclick="location.href='/{{result}}e'" class="left"> 
+        사람을 만나 힐링해야 한다.
+        </div>
+        <div onclick="location.href='/{{result}}i'" class="right">
+        친한사람이 아니라면 혼자도 괜찮다.
+        </div>
+    {% elif step == 2 %}
+       <div>
+        문제가 생겼을 때 당신은?
+        </div>
+        <div onclick="location.href='/{{result}}s'" class="left">
+        그냥 그런가 보다
+        </div>
+        <div onclick="location.href='/{{result}}n'" class="right">
+        어떻게 그럴 수 있지
+        </div>
+    {% elif step == 3 %}
+        <div>
+        수학을 잘하는 편인가요?
+        </div>
+        <div onclick="location.href='/{{result}}f'" class="left">
+        아니요
+        </div>
+        <div onclick="location.href='/{{result}}t'" class="right">
+        네
+        </div>
+    {% elif step == 4 %}
+        <div>
+        내 방은 보통
+        </div>
+        <div onclick="location.href='/{{result}}j'" class="left"> 
+        깨끗한 편
+        </div>
+        <div onclick="location.href='/{{result}}p'" class="right">
+        금방 더러워지는 편
+        </div>
+    {% elif step == 5 %}
+        <div>
+        결과 : {{result}}
+        </div>
+        <div>
+        총 {{cnt[0][0]+1}}분이 참여해주셨습니다.
+        당신은 그 중 {{mlist[2]+1}}명의 {{mlist[1]}}중 한 명입니다.
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
