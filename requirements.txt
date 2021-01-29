@@ -1,4 +1,2 @@
-RUN apk update
-RUN apk add postgresql-dev gcc python3-dev musl-dev
 Flask==1.1.1
 psycopg2-binary==2.8.5
