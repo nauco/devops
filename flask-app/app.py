@@ -58,6 +58,9 @@ def jp(ft):
 
 @app.route('/test/result')
 def res(jp):
+    pool = ["estj", "estp", "enfp", "entp", "esfj", "esfp", "enfj", "entj", "istj", "istp", "infp", "intp", "isfj", "isfp", "infj", "intj"]
+    if jp not in pool:
+        return render_template('test.html', step = 1, result = '')
     #db connect and save a result
     conn = db()
     cur = conn.cursor()
