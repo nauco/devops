@@ -2,7 +2,7 @@
 
 
 ## Architecture
-![Architecture](images/amazon-eks-argocd.png)
+![Architecture](images/architecture.png)
 
 
 ## Test
