@@ -63,8 +63,8 @@ def res(jp):
         return render_template('test.html', step = 1, result = '')
     #db connect and save a result
     conn = db()
-    cur = conn.cursor()
-    cur.execute("SELECT sum(count_mbti) FROM mbti1;")
+    cur = conn.cursor()   
+    cur.execute("SELECT SUM(count_mbti), SUM(count_trust) as t, SUM(count_not_trust) as nt  FROM mbti1;")
     cnt = cur.fetchall()
     cur.execute("SELECT * FROM mbti1 WHERE mbti = %(res)s;", {"res": jp.upper()})
     mlist = cur.fetchall()
@@ -78,9 +78,30 @@ def res(jp):
 def test():
     return render_template('test.html', step = 0)
 
+def trust(mbti):
+    jp = mbti[:4]
+    op = mbti[-1]
+    print(jp, op)
 
-@app.route("/<string:pick>")
+    conn = db()
+    cur = conn.cursor()   
+    if op == '1':
+        cur.execute("UPDATE mbti1 SET count_trust = count_trust + 1  WHERE mbti = %(res)s;", {"res": jp.upper()})
+    elif op == '0':
+        cur.execute("UPDATE mbti1 SET count_not_trust = count_not_trust + 1  WHERE mbti = %(res)s;", {"res": jp.upper()})
+
+    cur.close()
+    conn.commit()
+    conn.close()
+    return render_template('test.html')
+
+
+@app.route("/<string:pick>", methods=['GET', 'POST'])
 def hello(pick):
+    if request.method == "POST":
+        print(pick)
+        return trust(pick)
+
     if pick[-1] in "ei":
         return sn(pick)
     elif pick[-1] in "sn":

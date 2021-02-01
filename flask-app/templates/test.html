@@ -86,14 +86,29 @@
         <div>
         결과가 맞는 것 같나요?
         </div>
-        <div onclick="location.href='/{{result}}1'" class="left"> 
-        대충 맞는듯
+        <div id="sur">
+            <div onclick="do_survey('{{result}}1')" class="left"> 
+            대충 맞는듯
+            </div>
+            <div onclick="do_survey('{{result}}0')" class="right">
+            좀 다른듯
+            </div>
         </div>
-        <div onclick="location.href='/{{result}}0'" class="right">
-        좀 다른듯
+        <div id="survey" style="display:none">
+            맞다는 응답 {{cnt[0][1]}}, 다르다는 응답 {{cnt[0][2]}}
         </div>
     {% endif %}
 </div>
+<script>
+function do_survey(res){
+    var req = new XMLHttpRequest();
+    req.open("POST", "/"+res, true);
+    req.send();
+    document.getElementById("survey").style="disply:block";
+    document.getElementById("sur").remove();
 
+}
+
+</script>
 </body>
 </html>
