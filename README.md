@@ -2,7 +2,7 @@
 
 
 ## Architecture
-![Architecture](images/architecture.png)
+![Architecture](images/architecture.PNG)
 
 
 ## Test
