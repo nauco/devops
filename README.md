@@ -1,5 +1,6 @@
 # Devops CICD Practice
-
+## Notice
+ AWS 비용문제로 비활성화
 
 ## Architecture
 ![Architecture](images/architecture1.png)
